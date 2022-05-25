@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Router from "./Router/Router";
+import Tabbar from "./Views/Tabbar/Tabbar";
 
-function App() {
+
+
+export default function App() {
+
+    const item = [
+      {id: '/home', url: '/home', title: '電影'},
+      {id: '/cinemas', url: '/cinemas', title: '影院'},
+      {id: '/profile', url: '/profile', title: '我的'}
+    ]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Tabbar item={item} clickColor='blue' fixed='bottom'/>
+    </Router>
+  )
 }
-
-export default App;
