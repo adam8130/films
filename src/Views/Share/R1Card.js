@@ -4,12 +4,13 @@ import styled from 'styled-components'
 
 
 
-export default function Card(props) {
+export default function R1Card(props) {
 
-    const {w,h,m,p} = props
+    const {w,h,m,p,mt,mb,bg,click} = props
 
   return (
-    <Box w={w} h={h} m={m} p={p}>
+    <Box w={w} h={h} m={m} mt={mt} mb={mb} p={p} bg={bg}
+      onClick={()=>click()}>
         {props.children}
     </Box>
   )
@@ -19,10 +20,12 @@ export default function Card(props) {
 const Box = styled.div`
     width: ${props=>props.w? props.w: '100%'};
     height: ${props=>props.h? props.h: '80px'};
-    margin: ${props=>props.m? props.m: '40px 0'};
+    margin: ${props=>props.m};
+    margin-top: ${props=>props.mt};
+    margin-bottom: ${props=>props.mb};
     padding: ${props=>props.p? props.p: '30px'};
     line-height: ${props=>props.h? props.h: '80px'};
-    background: rgb(240,240,240);
+    background: ${props=> props.bg? props.bg: 'rgb(240,240,240)'};
     letter-spacing: 2px;
-    font-size: 18px;
+    font-size: 20px;
 `

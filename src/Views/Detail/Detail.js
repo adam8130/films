@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Divider, Image } from 'antd-mobile'
+import { Divider } from 'antd-mobile'
 import { LeftOutline } from 'antd-mobile-icons'
+import Image from '../Share/Image'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
@@ -39,11 +40,11 @@ function Detail(props) {
         
         const css = {
             div: {
-                width:'40px',height:'40px',background:'rgba(40,40,40,0.5)',
-                borderRadius:'50%',position:'fixed',top: '5px'
+                width:'35px',height:'35px',background:'rgba(40,40,40,0.5)',
+                borderRadius:'50%',position:'fixed',top: '5px', left:'5px'
             },
             icon: {
-                fontSize:'30px',color:'white',margin:'5px 0 0 2px'
+                fontSize:'25px',color:'white',margin:'5px 0 0 2px'
             }
         }
 
@@ -62,7 +63,7 @@ function Detail(props) {
         {backIcon()}
 
         {/* banner */}
-        <Image src={list.poster} height={250} fit='cover'/>
+        <Image url={list.poster} h='300px' mb='10px' />
         <h2>{list.name}</h2>
         <h4>{list.category}</h4>
         <p>{list.nation} | {list.runtime}分</p>
@@ -73,7 +74,7 @@ function Detail(props) {
         <ImgBox>
             {actorslist.map((item,i)=>
                 <ImgItem key={i}>
-                    <Image src={item.avatarAddress} width={100}/>
+                    <Image url={item.avatarAddress} w='100px' h='120px'/>
                     <h4>{item.name}</h4>
                     <p>角色: {item.role}</p>
                 </ImgItem>    
@@ -85,7 +86,7 @@ function Detail(props) {
         <ImgBox>
             {photoslist.map((item,i)=>
                 <ImgItem key={i}>
-                    <Image src={item} height={300} width={400} fit='cover'/>
+                    <Image url={item} h='280px' w='400px' mt='10px'/>
                 </ImgItem>    
             )}
         </ImgBox>

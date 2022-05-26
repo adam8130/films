@@ -7,7 +7,7 @@ export default function UeR2Card(props) {
 
     return (
         <Box>
-            <BoxItem>{props.mid}</BoxItem>
+            <BoxItem>{props.left}</BoxItem>
             <BoxItem>{props.right}</BoxItem>
         </Box>
     )
@@ -21,13 +21,15 @@ const Box = styled.div`
     margin: 5px auto;
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 2px;
 `  
 const BoxItem = styled.div`
-    flex: 0.8;
-        + div{
-            flex: 0.2;
+    flex: 1;
+        +div{
+            flex: 1
         }
-           
 `
+
 

@@ -6,7 +6,8 @@ import { createStore } from 'redux'
 const reducer = (prevState={
     comminglist: [],
     showinglist: [],
-    TabbarIsTrue: true
+    TabbarIsTrue: true,
+    cityId: 440300,
 }, action={})=>{
     let newState = {...prevState}
     switch(action.type){
@@ -18,6 +19,10 @@ const reducer = (prevState={
             return newState
         case 'TabbarIsTrue':
             newState.TabbarIsTrue = action.value
+            return newState
+        case 'city':
+            console.log(action.value);
+            newState.cityId = action.value
             return newState
         default:
             return prevState

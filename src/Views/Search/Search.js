@@ -1,17 +1,18 @@
-import React, { useEffect, useRef, useState }from 'react'
+import React, { useEffect, useState }from 'react'
 import { NavBar, Popup } from 'antd-mobile'
 import { SearchOutline } from 'antd-mobile-icons'
 import R1Card from '../Share/R1Card'
 import styled from 'styled-components'
 import axios from 'axios'
+import { connect } from 'react-redux'
 
 
 
-export default function Search(props) {
+function Search(props) {
     
     const [list,setlist] = useState([])
     const [popup,setpopup] = useState(false)
-    const ref = useRef()
+    const [input,setinput] = useState('')
   
 
     useEffect(() => {
@@ -26,26 +27,42 @@ export default function Search(props) {
       return () => {}
     }, [])
 
-    const change = ()=>{
-        
+
+    const filteredList = ()=>{
+      return (
+        list.filter(item=>item.name.includes(input))
+      )
+    }
+
+    const jumpTo = (r)=>{
+      props.dispatch(r)
+      props.history.push('/cinemas')
     }
 
   return (
     <div>
+
+      {/* navbar */}
+
         <NavBar right={<SearchOutline style={{fontSize:'20px'}}
         onClick={()=>setpopup(true)}/>}
         onBack={()=>{props.history.goBack()}}>
             目前選擇:
         </NavBar>
 
-        <Popup visible={popup} position='top' bodyStyle={{height: '10vh'}}
+      {/* popup && input */}
+
+        <Popup visible={popup} position='top' bodyStyle={{height: '6vh'}}
         onMaskClick={()=>setpopup(false)}>
-            <SearchBar placeholder='請輸入城市名' ref={ref} 
-            onChange={()=>change()}/>
+          <InputBar placeholder='請輸入城市名' 
+          onChange={(e)=>setinput(e.target.value)}/>
         </Popup>
 
-        {list.map(item=>
-            <R1Card key={item.cityId} h='50px' m='5px auto' p='5px 10px' >
+      {/* renderlist */}
+
+        {filteredList().map(item=>
+            <R1Card key={item.cityId} h='70px' m='5px auto' p='5px 10px' 
+              click={()=>jumpTo(item.cityId)}>
                 <h4>{item.name}</h4>
             </R1Card>    
         )}
@@ -54,9 +71,15 @@ export default function Search(props) {
 }
 
 
-const SearchBar = styled.input`
+const InputBar = styled.input`
     width: 100%;
     height: 40px;
     padding: 0 20px;
     font-size: 20px;
 `
+
+const mapDispatch = {
+  dispatch(r){return {type:'city',value:r}}
+}
+
+export default connect(null,mapDispatch)(Search)

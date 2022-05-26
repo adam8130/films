@@ -14,6 +14,7 @@ import { connect } from 'react-redux'
 function Home(props) {
 
   const {showinglist, dispatch, comminglist} = props
+  const {pathname} = props.location
   const [list, setlist] = useState([])
   const [swiperlist, setswiper] = useState([])
   const item = [
@@ -36,12 +37,12 @@ function Home(props) {
       setlist(showinglist)
     }
 
-    if(props.location.pathname === '/home/showing'){
+    if(pathname === '/home/showing'){
       setswiper(showinglist)
     }else{
       setswiper(comminglist) 
     }
-  },[dispatch,showinglist,props.location.pathname,comminglist])
+  },[dispatch,showinglist,pathname,comminglist])
 
 
   return (

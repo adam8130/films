@@ -51,6 +51,9 @@ const Desc = styled.div`
       white-space : nowrap;
       width: 160px;
     }
+    h6{
+      font-size: 14px;
+    }
     button{
       margin-top: 15px;
       width: 50px;

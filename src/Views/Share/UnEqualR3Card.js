@@ -31,6 +31,5 @@ const BoxItem = styled.div`
                     flex: 0.15;
                 }
         }
-           
 `
 
