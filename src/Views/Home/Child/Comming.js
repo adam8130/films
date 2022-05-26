@@ -11,7 +11,7 @@ function Comming(props) {
   
   const {dispatch, comminglist} = props
   const [list,setlist] = useState([])
-  
+
 
   useEffect(()=>{
     if(!comminglist.length >0){
@@ -26,6 +26,7 @@ function Comming(props) {
       setlist(comminglist)
     }
   },[comminglist,dispatch])
+
 
   const infoRender = r => (
     <Desc>
@@ -44,6 +45,7 @@ function Comming(props) {
           left={<Img url={item.poster}/>}
           mid={infoRender(item)}
           right={<Button>購買</Button>}
+          click={()=>{props.history.push(`/detail/${item.filmId}`)}}
         />
       )}
 
@@ -62,6 +64,7 @@ const Desc = styled.div`
   display: flex;
   flex-direction: column;
     h5{
+      font-size: 16px;
       overflow : hidden;
       text-overflow : ellipsis;
       white-space : nowrap;

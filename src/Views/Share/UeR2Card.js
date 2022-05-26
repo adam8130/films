@@ -7,7 +7,6 @@ export default function UnEqualR3Card(props) {
 
     return (
         <Box>
-            <BoxItem>{props.left}</BoxItem>
             <BoxItem onClick={()=>props.click()}>{props.mid}</BoxItem>
             <BoxItem>{props.right}</BoxItem>
         </Box>
@@ -24,12 +23,9 @@ const Box = styled.div`
     align-items: center;
 `  
 const BoxItem = styled.div`
-    flex: 0.3;
+    flex: 0.8;
         + div{
-            flex: 0.55;
-                + div{
-                    flex: 0.15;
-                }
+            flex: 0.2;
         }
            
 `

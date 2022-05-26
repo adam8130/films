@@ -1,11 +1,12 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import UnEqualR3Card from '../../Share/UnEqualR3Card'
 
 
 
 
-export default function Showing(props) {
+function Showing(props) {
 
   const infoRender = r => (
     <Desc>
@@ -16,6 +17,7 @@ export default function Showing(props) {
     </Desc>
   )
 
+
   return (
     <div>
       
@@ -24,6 +26,7 @@ export default function Showing(props) {
           left={<Img url={item.poster}/>}
           mid={infoRender(item)}
           right={<Button>購買</Button>}
+          click={()=>{props.history.push(`/detail/${item.filmId}`)}}
         />
       )}
 
@@ -42,6 +45,7 @@ const Desc = styled.div`
   display: flex;
   flex-direction: column;
     h5{
+      font-size: 16px;
       overflow : hidden;
       text-overflow : ellipsis;
       white-space : nowrap;
@@ -56,5 +60,7 @@ const Button = styled.button`
     padding: 3px 8px;
     border: 1px solid rgba(40,40,40,0.4);
     color: rgb(254,175,0);
-    
 `
+
+
+export default withRouter(Showing)
