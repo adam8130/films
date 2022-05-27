@@ -8,7 +8,7 @@ export default function MidPoster(props) {
 
   return (
     <Box url={props.url}>
-        <Image url={props.url} w='60%'/>
+        <Image url={props.url} w='60%' h='40vh'/>
     </Box>
   )
 }
@@ -22,7 +22,14 @@ const Box = styled.div`
     rgba(50,50,50,0.3)),url(${props=>props.url});
     background-size: cover;
     background-position: center -50px;
-        img{
-            width: 60%;
+    @media screen and (min-width: 768px) {
+      height: 70vh;
+    }
+      div{
+        @media screen and (min-width: 768px) {
+          width: 30%;
+          height: 70vh;
         }
+      }
+    
 `

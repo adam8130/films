@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Router from "./Router/Router";
-import Tabbar from "./Views/Tabbar/Tabbar";
+import Tabbar from "./Views/Share/Tabbar";
 
 
 
@@ -11,7 +11,7 @@ function App(props) {
     const [TabbarState,setTabbar]= useState(TabbarIsTrue)
     const item = [
       {id: '/home', url: '/home', title: '電影'},
-      {id: '/cinemas', url: '/cinemas', title: '影院'},
+      {id: '/cinemas', url: '/cinemas', title: '劇院'},
       {id: '/profile', url: '/profile', title: '我的'}
     ]
 

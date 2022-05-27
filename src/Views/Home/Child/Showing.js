@@ -39,6 +39,11 @@ const Img = styled.div`
   height: 120px;
   background-image: url(${props=>props.url});
   background-size: cover;
+  @media screen and (min-width: 768px) {
+    width: 200px;
+    height: 220px;
+    margin: auto;
+  }
 `
 const Desc = styled.div`
   padding: 10px;

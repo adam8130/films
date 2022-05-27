@@ -37,7 +37,6 @@ function Detail(props) {
 
 
     const backIcon = ()=>{        
-        
         const css = {
             div: {
                 width:'35px',height:'35px',background:'rgba(40,40,40,0.5)',
@@ -47,13 +46,41 @@ function Detail(props) {
                 fontSize:'25px',color:'white',margin:'5px 0 0 2px'
             }
         }
-
         return (
             <div style={css.div}>
                 <LeftOutline style={css.icon} onClick={()=>
                     props.history.goBack()}/>
             </div>
         )
+    }
+
+    // scss RWD
+    
+    const bannerRwd = {
+        media: 'min-width: 768px',
+        css: {
+            width: '40vw;',
+            height: '70vh;',
+            margin: 'auto;'
+        }
+    }
+
+    const actorRwd = {
+        media: 'min-width: 768px',
+        css: {
+            width: '300px;',
+            height: '350px;',
+            margin: '20px auto;'
+        }
+    }
+
+    const photoRwd = {
+        media: 'min-width: 768px',
+        css: {
+            width: '600px;',
+            height: '500px;',
+            margin: '10px;',
+        }
     }
 
 
@@ -63,7 +90,7 @@ function Detail(props) {
         {backIcon()}
 
         {/* banner */}
-        <Image url={list.poster} h='300px' mb='10px' />
+        <Image url={list.poster} h='300px' mb='10px' media={bannerRwd}/>
         <h2>{list.name}</h2>
         <h4>{list.category}</h4>
         <p>{list.nation} | {list.runtime}分</p>
@@ -74,9 +101,10 @@ function Detail(props) {
         <ImgBox>
             {actorslist.map((item,i)=>
                 <ImgItem key={i}>
-                    <Image url={item.avatarAddress} w='100px' h='120px'/>
-                    <h4>{item.name}</h4>
-                    <p>角色: {item.role}</p>
+                    <Image url={item.avatarAddress} w='100px' h='120px' 
+                    media={actorRwd}/>
+                        <h4>{item.name}</h4>
+                        <p>角色: {item.role}</p>
                 </ImgItem>    
             )}
         </ImgBox>
@@ -86,7 +114,8 @@ function Detail(props) {
         <ImgBox>
             {photoslist.map((item,i)=>
                 <ImgItem key={i}>
-                    <Image url={item} h='280px' w='400px' mt='10px'/>
+                    <Image url={item} h='280px' w='400px' mt='10px' 
+                    media={photoRwd}/>
                 </ImgItem>    
             )}
         </ImgBox>
@@ -100,11 +129,20 @@ const ImgBox = styled.div`
     margin: 10px 0;
     background: rgb(240,240,240);
     overflow-x: auto;
-    display: -webkit-box;
-    -webkit-overflow-scrolling:touch;
-        &::-webkit-scrollbar{
-            display: none;
+    display: flex;
+        &::-webkit-scrollbar-thumb{
+            background: rgba(40,40,40,0.3);
         }
+        &::-webkit-scrollbar{
+            background: rgba(240,240,240);
+        }
+    @media screen and ( max-width: 768px){
+        display: -webkit-box;
+        -webkit-overflow-scrolling:touch;
+            &::-webkit-scrollbar{
+                display: none;
+            }
+    }
 `
 const ImgItem = styled.div`
     display: flex;

@@ -4,7 +4,7 @@ import { Swiper } from 'antd-mobile'
 import Showing from './Child/Showing'
 import Comming from './Child/Comming'
 import MidPoster from '../Share/MidPoster'
-import Tabbar from '../Tabbar/Tabbar'
+import Tabbar from '../Share/Tabbar'
 import axios from 'axios'
 import { connect } from 'react-redux'
 
@@ -59,7 +59,7 @@ function Home(props) {
       </Swiper>
 
       {/* Tabbar */}
-      <Tabbar item={item} fixed='sticky' color='white'/>
+      <Tabbar item={item} fixed='sticky-top' color='white'/>
 
       {/* Showing || Comming */}
       <Switch>

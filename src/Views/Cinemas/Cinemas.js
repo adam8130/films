@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavBar } from 'antd-mobile'
+import { NavBar, Popup } from 'antd-mobile'
 import { SearchOutline, DownOutline } from 'antd-mobile-icons'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
@@ -13,6 +13,8 @@ function Cinemas(props) {
 
   const {cityId} = props
   const [list,setlist] = useState([])
+  const [popup,setpopup] = useState(false)
+  const [input,setinput] = useState('')
   const [currentCity,setcity] = useState('')
   const font20 = {fontSize:'20px'}
 
@@ -33,18 +35,31 @@ function Cinemas(props) {
     props.history.push(r)
   }
 
+  const filteredList = ()=>(
+      list.filter(item=>item.name.includes(input))
+  )
+  
+
 
   return (
     <div>
       
       {/* navbar */}
       <NavBar back={currentCity} backArrow={<DownOutline style={font20}/>}
-      right={<SearchOutline style={font20}/>} onBack={()=>click('/search')}>
+      right={<SearchOutline style={font20} onClick={()=>setpopup(true)}/>} 
+      onBack={()=>click('/search')}>
         劇院
       </NavBar>
 
+      {/* popup && input */}
+      <Popup visible={popup} position='top' bodyStyle={{height: '6vh'}}
+        onMaskClick={()=>setpopup(false)}>
+          <InputBar placeholder='請輸入城市名' 
+          onChange={(e)=>setinput(e.target.value)}/>
+      </Popup>
+
       {/* list */}
-      {list.map(item=>
+      {filteredList().map(item=>
         <UeR2Card key={item.cinemaId} 
             mid={<div style={{width:'90%'}}>
                     <h4>{item.name}</h4>
@@ -61,6 +76,13 @@ const Button = styled.button`
     border: 1px solid rgba(40,40,40,0.4);
     color: rgb(254,175,0);
 `
+const InputBar = styled.input`
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    font-size: 20px;
+`
+
 
 const mapState = state =>(
   {cityId: state.cityId}

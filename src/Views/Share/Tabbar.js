@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 function Tabbar(props) {
 
-  const {item, clickColor} = props
+  const {item, clickColor,fixed,color} = props
   const [list, setlist] = useState([])
 
   useEffect(()=>{
@@ -17,13 +17,13 @@ function Tabbar(props) {
   
   const effect = (r)=>{
     return {color: props.location.pathname.split('/')[1] === r.id.split('/')[1] 
-    || props.location.pathname === r.url? 
-    (clickColor? clickColor :'orange') : '' }
+    || props.location.pathname=== r.url? (clickColor? clickColor: 'orange'): ''}
   }
 
 
   return (
-    <Box fixed={props.fixed} color={props.color}>
+    <Box fixed={fixed} color={color}>
+      
       {list.map((item,i)=>
         <BoxItem key={item.id} style={effect(item)} 
           onClick={()=>props.history.push(item.url)}>
@@ -42,7 +42,9 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   ${props=>props.fixed==='bottom'? 'position: fixed; bottom: 0;' : null}
-  ${props=>props.fixed==='sticky'? 'position: sticky; top: 0;' : null}
+  ${props=>props.fixed==='top'? 'position: fixed; top: 0;' : null}
+  ${props=>props.fixed==='sticky-top'? 'position: sticky; top: 0;' : null}
+  ${props=>props.fixed==='sticky-bottom'? 'position: sticky; bottom: 0;' : null}
 `
 const BoxItem = styled.div`
   flex: 1;
