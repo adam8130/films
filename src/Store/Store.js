@@ -23,6 +23,8 @@ const reducer = (prevState={
         case 'city':
             console.log(action.value);
             newState.cityId = action.value
+            newState.showinglist = []
+            newState.comminglist = []
             return newState
         default:
             return prevState

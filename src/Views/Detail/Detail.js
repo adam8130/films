@@ -58,29 +58,17 @@ function Detail(props) {
     
     const bannerRwd = {
         media: 'min-width: 768px',
-        css: {
-            width: '40vw;',
-            height: '70vh;',
-            margin: 'auto;'
-        }
+        css: {width: '60vw;',height: '50vh;',margin: 'auto;'},
+        media2: 'min-width: 1000px',
+        css2: {width: '40vw;',height: '70vh;',margin: 'auto;'}
     }
-
     const actorRwd = {
         media: 'min-width: 768px',
-        css: {
-            width: '300px;',
-            height: '350px;',
-            margin: '20px auto;'
-        }
+        css: {width: '300px;',height: '350px;',margin: '20px auto;'}
     }
-
     const photoRwd = {
         media: 'min-width: 768px',
-        css: {
-            width: '600px;',
-            height: '500px;',
-            margin: '10px;',
-        }
+        css: {width: '600px;',height: '500px;',margin: '10px;',}
     }
 
 

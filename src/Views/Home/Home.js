@@ -13,7 +13,7 @@ import { connect } from 'react-redux'
 
 function Home(props) {
 
-  const {showinglist, dispatch, comminglist} = props
+  const {showinglist, dispatch, comminglist,cityId} = props
   const {pathname} = props.location
   const [list, setlist] = useState([])
   const [swiperlist, setswiper] = useState([])
@@ -22,26 +22,22 @@ function Home(props) {
     {id: '/comming', url: '/home/comming', title:'即將上映'}
   ]
 
-
+console.log(cityId);
   useEffect(()=>{
     
     if(!showinglist.length>0){
       axios({
-        url: 'https://m.maizuo.com/gateway?cityId=440300&pageNum=1&pageSize=10&type=1&k=5153642',
+        url: `https://m.maizuo.com/gateway?cityId=${cityId}&pageNum=1&pageSize=10&type=1&k=5153642`,
         headers: {
           'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.2.0","e":"1651519839805538296233985","bc":"440300"}',
           'X-Host': 'mall.film-ticket.film.list'
         }
       }).then(res=>dispatch(res.data.data.films))
-    }else{
-      setlist(showinglist)
-    }
+    }else{setlist(showinglist)}
 
-    if(pathname === '/home/showing'){
-      setswiper(showinglist)
-    }else{
-      setswiper(comminglist) 
-    }
+    if(pathname === '/home/showing'){setswiper(showinglist)}
+    else{setswiper(comminglist)}
+
   },[dispatch,showinglist,pathname,comminglist])
 
 
@@ -50,13 +46,15 @@ function Home(props) {
     <div>
       
       {/* Swiper */}
-      <Swiper autoplay loop>
-        {swiperlist.map(item=> 
-          <Swiper.Item key={item.filmId}>
-              <MidPoster url={item.poster}/>
-          </Swiper.Item>
-        )}
-      </Swiper>
+      {swiperlist.length >0 &&
+        <Swiper autoplay loop>
+          {swiperlist.map((item)=> 
+            <Swiper.Item key={item.filmId}>
+                <MidPoster url={item.poster}/>
+            </Swiper.Item>
+          )}
+        </Swiper>
+      }
 
       {/* Tabbar */}
       <Tabbar item={item} fixed='sticky-top' color='white'/>
@@ -73,6 +71,7 @@ function Home(props) {
 }
 
 const mapState = (state) =>({
+  cityId: state.cityId,
   showinglist: state.showinglist,
   comminglist: state.comminglist
 })

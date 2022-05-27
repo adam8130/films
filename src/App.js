@@ -22,6 +22,7 @@ function App(props) {
   return (
     <Router>
       {TabbarState&&<Tabbar item={item} clickColor='blue' fixed='bottom'/>}
+      <div style={{height:'55px',}}/>
     </Router>
   )
 }

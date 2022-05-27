@@ -1,49 +1,56 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
-import UnEqualR3Card from '../../Share/UnEqualR3Card'
+import Image from '../../Share/Image'
 
 
 
 
 function Showing(props) {
 
-  const infoRender = r => (
-    <Desc>
-      <h5>{r.name}</h5>
-      <h6>評分: {r.grade? r.grade: '尚未評分'}</h6>
-      <p>{r.nation} | {r.runtime}分</p>
-      <button>詳情</button>
-    </Desc>
-  )
+  const {list} = props
 
+  const imgRwd = {
+    media: 'min-width: 768px',
+    css: {width: '200px;',height: '220px;',margin: 'auto;'}
+  }
+
+  const click = (r)=>{
+    props.history.push(`/detail/${r.filmId}`)
+  }
 
   return (
     <div>
       
-      {props.list.map(item=>
-        <UnEqualR3Card key={item.filmId} 
-          left={<Img url={item.poster}/>}
-          mid={infoRender(item)}
-          right={<Button>購買</Button>}
-          click={()=>{props.history.push(`/detail/${item.filmId}`)}}
-        />
+      {list.map(item=>
+        <Box key={item.filmId} bg='white'>
+          <Image url={item.poster} w='100px' h='120px' media={imgRwd}
+            click={()=>click(item)}/>
+
+          <Desc onClick={()=>click(item)}>
+            <h5>{item.name}</h5>
+            <h6>評分: {item.grade? item.grade: '尚未評分'}</h6>
+            <p>{item.nation} | {item.runtime}分</p>
+            <button>詳情</button>
+          </Desc>
+
+          <div>
+            <Button>購買</Button>
+          </div>
+        </Box>
       )}
 
     </div>
   )
 }
 
-const Img = styled.div`
-  width: 100px;
-  height: 120px;
-  background-image: url(${props=>props.url});
-  background-size: cover;
-  @media screen and (min-width: 768px) {
-    width: 200px;
-    height: 220px;
-    margin: auto;
-  }
+const Box = styled.div`
+  width: 100%;
+  background: rgba(240,240,240,0.4);
+  padding: 10px 10px;
+  margin: 5px auto;
+  display: flex;
+  align-items: center;
 `
 const Desc = styled.div`
   padding: 10px;

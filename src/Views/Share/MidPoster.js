@@ -23,13 +23,19 @@ const Box = styled.div`
     background-size: cover;
     background-position: center -50px;
     @media screen and (min-width: 768px) {
-      height: 70vh;
-    }
-      div{
-        @media screen and (min-width: 768px) {
-          width: 30%;
-          height: 70vh;
+      height: 50vh;
+        div{
+            width: 60%;
+            height: 50vh;
         }
-      }
+    }
+    @media screen and (min-width: 1000px) {
+      height: 70vh;
+        div{
+              width: 30vw;
+              height: 70vh;
+            }
+        }
+    }
     
 `

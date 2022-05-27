@@ -12,7 +12,6 @@ import Search from '../Views/Search/Search'
 export default function Router(props) {
   return (
       <HashRouter>
-          {props.children}
           <Switch>
               <Route path='/home' component={Home}/>
               <Route path='/cinemas' component={Cinemas}/>
@@ -21,6 +20,7 @@ export default function Router(props) {
               <Route path='/search' component={Search}/>
               <Redirect from='/' to='/home'/>
           </Switch>
+          {props.children}
       </HashRouter>
   )
 }

@@ -10,7 +10,7 @@ export default function R1Card(props) {
 
   return (
     <Box w={w} h={h} m={m} mt={mt} mb={mb} p={p} bg={bg}
-      onClick={()=>click()}>
+      onClick={()=>click()&&click()}>
         {props.children}
     </Box>
   )

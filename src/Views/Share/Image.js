@@ -5,10 +5,11 @@ import styled from 'styled-components'
 
 export default function Image(props) {
 
-    const {w,h,m,url,mt,mb,fit,media} = props
+    const {w,h,m,url,mt,mb,fit,media,click} = props
 
   return (
-    <Box w={w} h={h} m={m} mt={mt} mb={mb} url={url} fit={fit} media={media}/>
+    <Box w={w} h={h} m={m} mt={mt} mb={mb} url={url} fit={fit} media={media}
+      onClick={()=>click&&click()}/>
   )
 }
 
@@ -23,5 +24,12 @@ const Box = styled.div`
     @media screen and (${props=>props.media && props.media.media}) {
       ${props=>props.media && props.media.css}
     }
-    
-`
+    @media screen and (${props=>props.media && props.media.media2}) {
+      ${props=>props.media && props.media.css2}
+    }
+    @media screen and (${props=>props.media && props.media.media3}) {
+      ${props=>props.media && props.media.css3}
+    }
+    `
+    // ${props=>props.media.map((item,i)=>'@media screen and (' +item.media+ ')'+
+    // '{' + item.css +'}')}
