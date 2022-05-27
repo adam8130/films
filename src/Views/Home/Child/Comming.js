@@ -24,24 +24,29 @@ function Comming(props) {
     }else{
       setlist(comminglist)
     }
-  },[comminglist,dispatch])
+  },[comminglist,dispatch,cityId])
 
   const imgRwd = {
     media: 'min-width: 768px',
-    css: {width: '200px;',height: '220px;',margin: 'auto;'}
+    css: {width: '200px;',height: '220px;',margin: 'auto'},
+    media2: 'min-width: 1000px',
+    css2: {width: '200px;',height: '260px;',margin: 'auto'},
   }
 
   const click = (r)=>{
     props.history.push(`/detail/${r.filmId}`)
   }
 
+
   return (
     <div>
       
       {list.map(item=>
         <Box key={item.filmId} bg='white'>
-          <Image url={item.poster} w='100px' h='120px' media={imgRwd}
-            click={()=>click(item)}/>
+          <div>
+            <Image url={item.poster} w='100px' h='120px' media={imgRwd}
+              click={()=>click(item)}/>
+          </div>
 
           <Desc onClick={()=>click(item)}>
             <h5>{item.name}</h5>
@@ -68,28 +73,39 @@ const Box = styled.div`
   margin: 5px auto;
   display: flex;
   align-items: center;
+    > div{
+      flex: 0.3;
+        +div{
+          flex: 0.55;
+            +div{
+              flex: 0.15;
+            }
+        }
+    }
 `
 const Desc = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
-    h5{
-      font-size: 16px;
-      overflow : hidden;
-      text-overflow : ellipsis;
-      white-space : nowrap;
-      width: 160px;
+  h5{
+    font-size: 16px;
+    overflow : hidden;
+    text-overflow : ellipsis;
+    white-space : nowrap;
+    width: 160px;
+    @media screen and (min-width: 768px) {
+      width: 300px;
     }
-    button{
-      margin-top: 15px;
-      width: 50px;
-    }
+  }
+  button{
+    margin-top: 15px;
+    width: 50px;
+  }
 `
 const Button = styled.button`
     padding: 3px 8px;
     border: 1px solid rgba(40,40,40,0.4);
     color: rgb(254,175,0);
-    
 `
 
 

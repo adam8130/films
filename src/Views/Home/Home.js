@@ -38,7 +38,7 @@ console.log(cityId);
     if(pathname === '/home/showing'){setswiper(showinglist)}
     else{setswiper(comminglist)}
 
-  },[dispatch,showinglist,pathname,comminglist])
+  },[dispatch,showinglist,pathname,comminglist,cityId])
 
 
   return (
