@@ -8,7 +8,7 @@ const reducer = (prevState={
     showinglist: [],
     TabbarIsTrue: true,
     cityId: 440300,
-    cityName: '深圳市'
+    cityName: '深圳'
 }, action={})=>{
     let newState = {...prevState}
     switch(action.type){
