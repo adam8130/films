@@ -64,11 +64,11 @@ function Detail(props) {
     }
     const actorRwd = {
         media: 'min-width: 768px',
-        css: {width: '300px;',height: '350px;',margin: '20px auto;'}
+        css: {width: '250px;',height: '300px;',margin: '20px auto;'}
     }
     const photoRwd = {
         media: 'min-width: 768px',
-        css: {width: '600px;',height: '500px;',margin: '10px;',}
+        css: {width: '600px;',height: '400px;',margin: '10px;',}
     }
 
 
@@ -78,7 +78,7 @@ function Detail(props) {
         {backIcon()}
 
         {/* banner */}
-        <Image url={list.poster} h='300px' mb='10px' media={bannerRwd}/>
+        <Image url={list.poster} h='400px' mb='10px' media={bannerRwd}/>
         <h2>{list.name}</h2>
         <h4>{list.category}</h4>
         <p>{list.nation} | {list.runtime}分</p>
@@ -137,6 +137,7 @@ const ImgItem = styled.div`
     flex-direction: column;
     text-align: center;
 `
+
 
 const mapState = (state)=>(
     {TabbarIsTrue: state.TabbarIsTrue}

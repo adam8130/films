@@ -1,32 +1,31 @@
 import React from 'react'
+import styled from 'styled-components'
 
 
 
-export default function Card(props) {
 
-    const css = {
-        card: {
-            width: '100%',
-            height: '80px',
-            margin: props.margin? props.margin: '40px auto',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            textAlign: 'center',
-        },
-        cardItem: {
-            width: '90%',
-            background: 'rgb(240,240,240)',
-            padding: '30px',
-            fontSize: '18px',
-            letterSpacing: '2px',
-        }
-    }
+export default function R1Card(props) {
+
+    const {w,h,m,p,mt,mb,bg,click,ls,fs} = props
 
   return (
-
-    <div style={css.card}>
-        <h6 style={css.cardItem}>{props.children}</h6>
-    </div>
+    <Box w={w} h={h} m={m} mt={mt} mb={mb} p={p} bg={bg} ls={ls} fs={fs}
+      onClick={()=>click()&&click()}>
+        {props.children}
+    </Box>
   )
 }
+
+
+const Box = styled.div`
+    width: ${props=>props.w? props.w: '100%'};
+    height: ${props=>props.h};
+    margin: ${props=>props.m};
+    margin-top: ${props=>props.mt};
+    margin-bottom: ${props=>props.mb};
+    padding: ${props=>props.p};
+    line-height: ${props=>props.h};
+    background: ${props=> props.bg? props.bg: 'rgb(240,240,240)'};
+    letter-spacing: ${props=>props.ls};
+    font-size: ${props=>props.fs};
+`

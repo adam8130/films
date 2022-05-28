@@ -1,7 +1,7 @@
 import React, { useEffect, useState }from 'react'
 import { NavBar, Popup } from 'antd-mobile'
 import { SearchOutline } from 'antd-mobile-icons'
-import R1Card from '../Share/R1Card'
+import Card from '../Share/Card'
 import styled from 'styled-components'
 import axios from 'axios'
 import { connect } from 'react-redux'
@@ -36,7 +36,7 @@ function Search(props) {
 
     const jumpTo = (r)=>{
       props.dispatch(r)
-      props.history.push('/cinemas')
+      props.history.push('/home')
     }
 
   return (
@@ -61,10 +61,10 @@ function Search(props) {
       {/* renderlist */}
 
         {filteredList().map(item=>
-            <R1Card key={item.cityId} h='70px' m='5px auto' p='5px 10px' 
-              click={()=>jumpTo(item.cityId)}>
+            <Card key={item.cityId} h='70px' m='5px auto' p='5px 10px' 
+              fs='20px' ls='2px' click={()=>jumpTo(item)}>
                 <h4>{item.name}</h4>
-            </R1Card>    
+            </Card>    
         )}
     </div>
   )
@@ -79,7 +79,10 @@ const InputBar = styled.input`
 `
 
 const mapDispatch = {
-  dispatch(r){return {type:'city',value:r}}
+  dispatch(r){
+    return {type:'city', value: r.cityId,
+      value2: r.name}
+  }
 }
 
 export default connect(null,mapDispatch)(Search)

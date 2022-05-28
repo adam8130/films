@@ -1,8 +1,8 @@
 import { Avatar } from 'antd-mobile'
 import React from 'react'
-import R1Card from '../Share/R1Card'
+import R1Card from '../Share/Card'
 import styled from 'styled-components'
-import DfR2Card from '../Share/DfR2Card'
+import Card2 from '../Share/Card2'
 
 
 
@@ -26,7 +26,7 @@ export default function Profile() {
         </Box>
       </R1Card>
 
-      <DfR2Card left={<h5>我的電影</h5>} right={<h5>購票紀錄</h5>}/>
+      <Card2 left={<h5>我的電影</h5>} right={<h5>購票紀錄</h5>}/>
       
       {item.map((item,i)=>
         <Item key={i}>{item.title}</Item>

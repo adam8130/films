@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { NavBar, Popup } from 'antd-mobile'
+import { NavBar, Popup, Toast } from 'antd-mobile'
 import { SearchOutline, DownOutline } from 'antd-mobile-icons'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import UeR2Card from '../Share/UeR2Card'
 import axios from 'axios'
 
 
@@ -60,17 +59,44 @@ function Cinemas(props) {
 
       {/* list */}
       {filteredList().map(item=>
-        <UeR2Card key={item.cinemaId} 
-            mid={<div style={{width:'90%'}}>
-                    <h4>{item.name}</h4>
-                    <p>{item.address}</p>
-                  </div>}
-            right={<Button>查看票價</Button>}/>
+        <Box key={item.cinemaId}>
+            <div onClick={()=>Toast.show({content:'請點擊左上角選擇城市'})}>
+              <h4>{item.name}</h4>
+              <p>{item.address}</p>
+            </div>
+            <div>
+              <Button >查看票價</Button>
+            </div>
+        </Box> 
       )}
     </div>
   )
 }
 
+
+const Box = styled.div`
+    width: 100%;
+    background: rgba(240,240,240,0.4);
+    padding: 20px 10px;
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+      > div{
+        flex:0.8;
+          +div{
+            flex: 0.2;
+          }
+      }
+    @media screen and (min-width:1000px){
+      > div{
+        flex:0.9;
+          +div{
+            flex: 0.1;
+          }
+      }
+    }
+`  
 const Button = styled.button`
     padding: 3px 5px;
     border: 1px solid rgba(40,40,40,0.4);

@@ -6,22 +6,29 @@ import Image from './Image'
 
 export default function MidImage(props) {
 
+  const {w,h,m,url,mt,mb,fit,media,click,xy} = props
+
   return (
-    <Box url={props.url}>
-        <Image url={props.url} w='60%' h='40vh'/>
+    <Box url={url} w={w} h={h} m={m} mt={mt} mb={mb} fit={fit} xy={xy}
+      media={media} onClick={()=>click?click():{}}>
+        <Image url={url} w='60%' h='40vh'/>
     </Box>
   )
 }
 
+
 const Box = styled.div`
-    width: 100%;
-    height: 40vh;
+    width: ${props=>props.w? props.w : '100%'};
+    height: ${props=>props.h? props.h : '40vh'};
+    margin: ${props=>props.m};
+    margin-top: ${props=>props.mt};
+    margin-bottom: ${props=>props.mb};
     display: flex;
     justify-content: center;
     background-image: linear-gradient(rgba(50,50,50,0.3),
     rgba(50,50,50,0.3)),url(${props=>props.url});
-    background-size: cover;
-    background-position: center -50px;
+    background-size: ${props=>props.fit? props.fit: 'cover'};
+    background-position: ${props=>props.xy? props.xy: 'center center'};
     @media screen and (min-width: 768px) {
       height: 50vh;
         div{

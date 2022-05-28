@@ -8,6 +8,7 @@ const reducer = (prevState={
     showinglist: [],
     TabbarIsTrue: true,
     cityId: 440300,
+    cityName: '深圳市'
 }, action={})=>{
     let newState = {...prevState}
     switch(action.type){
@@ -23,6 +24,7 @@ const reducer = (prevState={
         case 'city':
             console.log(action.value);
             newState.cityId = action.value
+            newState.cityName = action.value2
             newState.showinglist = []
             newState.comminglist = []
             return newState

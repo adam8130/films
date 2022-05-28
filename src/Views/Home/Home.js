@@ -9,25 +9,28 @@ import Showing from './Child/Showing'
 import Comming from './Child/Comming'
 import MidImage from '../Share/MidImage'
 import Tabbar from '../Share/Tabbar'
+import Card from "../Share/Card";
 
 
 
 
 function Home(props) {
 
-  const {showinglist, dispatch, comminglist,cityId} = props
+  const {showinglist, dispatch, comminglist,cityId,cityName} = props
   const {pathname} = props.location
   const [list, setlist] = useState([])
   const [swiperlist, setswiper] = useState([])
   const [iconstate, seticonstate] = useState([true])
+  const [currentCity,setcity] = useState('')
   const item = [
     {id: '/showing', url: '/home/showing', title:'現正熱映'},
     {id: '/comming', url: '/home/comming', title:'即將上映'}
   ]
 
-console.log(cityId);
+  
   useEffect(()=>{
-    
+
+    setcity(cityName)
     if(!showinglist.length>0){
       axios({
         url: `https://m.maizuo.com/gateway?cityId=${cityId}&pageNum=1&pageSize=10&type=1&k=5153642`,
@@ -41,7 +44,7 @@ console.log(cityId);
     if(pathname === '/home/showing'){setswiper(showinglist)}
     else{setswiper(comminglist)}
 
-  },[dispatch,showinglist,pathname,comminglist,cityId])
+  },[dispatch,showinglist,pathname,comminglist,cityId,cityName])
 
   const backIcon = ()=>{        
     const css = {
@@ -83,7 +86,7 @@ console.log(cityId);
         <Swiper autoplay loop>
           {swiperlist.map((item)=> 
             <Swiper.Item key={item.filmId}>
-                <MidImage url={item.poster}/>
+                <MidImage url={item.poster} xy={'center -50px'}/>
             </Swiper.Item>
           )}
         </Swiper>
@@ -91,6 +94,9 @@ console.log(cityId);
 
       {/* Tabbar */}
       <Tabbar item={item} fixed='sticky-top' color='white'/>
+      
+      {/* City */}
+      <Card p='5px 10px' m='auto' bg='white'>現在城市: {currentCity}市</Card>
 
       {/* Showing || Comming */}
       <Switch>
@@ -116,8 +122,9 @@ const Box = styled.div`
 
 const mapState = (state) =>({
   cityId: state.cityId,
+  cityName: state.cityName,
   showinglist: state.showinglist,
-  comminglist: state.comminglist
+  comminglist: state.comminglist,
 })
 
 export default connect(mapState,{dispatch(r){return {type: 'showinglist', payload: r}}})
