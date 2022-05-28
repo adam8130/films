@@ -1,10 +1,10 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Divider } from 'antd-mobile'
 import { LeftOutline } from 'antd-mobile-icons'
-import Image from '../Share/Image'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import axios from 'axios'
+import Image from '../Share/Image'
 
 
 

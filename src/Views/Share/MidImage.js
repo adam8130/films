@@ -4,7 +4,7 @@ import Image from './Image'
 
 
 
-export default function MidPoster(props) {
+export default function MidImage(props) {
 
   return (
     <Box url={props.url}>

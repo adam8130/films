@@ -87,6 +87,7 @@ const Desc = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
+  cursor: pointer; 
   h5{
     font-size: 16px;
     overflow : hidden;
