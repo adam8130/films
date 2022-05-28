@@ -1,7 +1,7 @@
 import { Avatar } from 'antd-mobile'
 import React from 'react'
-import R1Card from '../Share/Card'
 import styled from 'styled-components'
+import Card from '../Share/Card'
 import Card2 from '../Share/Card2'
 
 
@@ -19,12 +19,12 @@ export default function Profile() {
 
   return (
     <div>
-      <R1Card bg='orange' h='150px'>
+      <Card bg='orange' h='150px' d='flex' aic >
         <Box>
           <Avatar style={{'--size':'48px'}}/>
           <h3>尚未登錄</h3>
         </Box>
-      </R1Card>
+      </Card>
 
       <Card2 left={<h5>我的電影</h5>} right={<h5>購票紀錄</h5>}/>
       
@@ -37,8 +37,8 @@ export default function Profile() {
 }
 
 const Box = styled.div`
-  margin-top: 20px;
-  height: 50px;
+  width: 100%;
+  margin-left: 20px;
   display: flex;
     h3{
       font-size: 18px;

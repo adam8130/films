@@ -71,9 +71,9 @@ function Home(props) {
       {iconstate &&
         <Box>
           <p>
-            目前是以手機板開發, PC僅有加入一點的RWD設定
-            <br/>還請使用f12觀看, 避免傷眼...<br/>
-            全部組件皆使用styled-components＆少量antd獨立開發複用<br/> 
+            目前是以手機板開發, 僅有加入一點的RWD設定
+            <br/>請使用f12觀看, 效果最優...<br/>
+            全部組件皆使用styled-components＆少量antd開發與複用<br/> 
             主要實做功能為, 拿到後端所有地區及所有劇院數據, 於劇院組件做切換,
             使用redux-persist保留住數據, 並在電影組件瀏覽, 現正熱映＆即將上映的電影
           </p>
